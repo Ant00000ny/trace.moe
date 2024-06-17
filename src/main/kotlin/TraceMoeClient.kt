@@ -1,6 +1,7 @@
-import utilility.Constant
+import okhttp3.OkHttpClient
 
-class TraceMoeClient {
-    val accessToken: String? = null // todo
-    val httpClient = Constant.httpClient
+class TraceMoeClient(
+    val accessToken: String? = null,
+) {
+    val httpClient = OkHttpClient()
 }

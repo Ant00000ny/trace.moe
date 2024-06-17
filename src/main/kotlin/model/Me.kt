@@ -38,7 +38,8 @@ data class Me(
             .header(Constant.TRACE_MOE_KEY_HEADER, client.accessToken)
             .build()
 
-        val me = Constant.httpClient.newCall(request)
+        val me = client
+            .httpClient.newCall(request)
             .execute()
             .body
             .use { it.string() }

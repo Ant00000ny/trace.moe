@@ -31,7 +31,7 @@ class SearchByImageUpload(
             .post(requestBody)
             .build()
 
-        val traceMoeResponse = Constant.httpClient.newCall(request)
+        val traceMoeResponse = client.httpClient.newCall(request)
             .execute()
             .body
             .use { it.string() }

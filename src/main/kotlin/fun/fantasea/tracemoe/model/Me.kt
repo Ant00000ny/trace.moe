@@ -1,11 +1,11 @@
-package model
+package `fun`.fantasea.tracemoe.model
 
-import TraceMoeClient
-import api.Api
-import exception.ErrorException
+import `fun`.fantasea.tracemoe.TraceMoeClient
+import `fun`.fantasea.tracemoe.api.Api
+import `fun`.fantasea.tracemoe.exception.ErrorException
+import `fun`.fantasea.tracemoe.utilility.Constant
+import `fun`.fantasea.tracemoe.utilility.Function.convertTo
 import okhttp3.Request
-import utilility.Constant
-import utilility.Function.convertTo
 
 /**
  * ```json

@@ -1,4 +1,4 @@
-package model
+package `fun`.fantasea.tracemoe.model
 
 /**
  * ```json

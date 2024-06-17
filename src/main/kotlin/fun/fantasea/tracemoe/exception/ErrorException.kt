@@ -1,4 +1,4 @@
-package exception
+package `fun`.fantasea.tracemoe.exception
 
 class ErrorException(message: String?, cause: Throwable?) : Exception(message, cause) {
     constructor(message: String) : this(message, null)

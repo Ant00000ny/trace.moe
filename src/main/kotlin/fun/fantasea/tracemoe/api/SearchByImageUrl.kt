@@ -1,26 +1,24 @@
-package api
+package `fun`.fantasea.tracemoe.api
 
-import TraceMoeClient
-import model.TraceMoeResponse
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import `fun`.fantasea.tracemoe.TraceMoeClient
+import `fun`.fantasea.tracemoe.model.TraceMoeResponse
+import `fun`.fantasea.tracemoe.utilility.Constant
+import `fun`.fantasea.tracemoe.utilility.Function.convertTo
+import okhttp3.HttpUrl
 import okhttp3.Request
-import okhttp3.RequestBody.Companion.toRequestBody
-import utilility.Constant
-import utilility.Function.convertTo
 
 /**
- * curl --data-binary "@demo.jpg" https://api.trace.moe/search
+ * curl "https://api.trace.moe/search?url=https://images.plurk.com/32B15UXxymfSMwKGTObY5e.jpg"
  */
-class SearchByImageUpload(
-    private val imageBytes: ByteArray,
+class SearchByImageUrl(
+    private val imageUrl: HttpUrl,
     private val cutBorders: Boolean = false,
     private val anilistID: Int? = null,
 ) : Api<TraceMoeResponse> {
     override fun executeBy(client: TraceMoeClient): TraceMoeResponse {
-        val requestBody = imageBytes.toRequestBody("application/octet-stream".toMediaTypeOrNull())
-
         val url = Constant.BASE_SEARCH_URL.newBuilder()
             .apply {
+                addQueryParameter("url", imageUrl.toString())
                 if (cutBorders) addQueryParameter("cutBorders", null)
                 if (anilistID != null) addQueryParameter("anilistID", anilistID.toString())
             }
@@ -28,7 +26,7 @@ class SearchByImageUpload(
 
         val request = Request.Builder()
             .url(url)
-            .post(requestBody)
+            .get()
             .build()
 
         val traceMoeResponse = client.httpClient.newCall(request)

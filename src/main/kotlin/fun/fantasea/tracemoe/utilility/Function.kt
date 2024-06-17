@@ -1,4 +1,4 @@
-package utilility
+package `fun`.fantasea.tracemoe.utilility
 
 import com.fasterxml.jackson.module.kotlin.readValue
 

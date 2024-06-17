@@ -1,5 +1,7 @@
 package `fun`.fantasea.tracemoe.model
 
+import `fun`.fantasea.tracemoe.utilility.Constant
+
 /**
  * ```json
  * {
@@ -25,7 +27,11 @@ data class TraceMoeResponse(
     val frameCount: Int,
     val error: String,
     val result: List<TraceMoeResult>,
-)
+) {
+    override fun toString(): String =
+        Constant.objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(this)
+
+}
 
 data class TraceMoeResult(
     val anilist: Int,

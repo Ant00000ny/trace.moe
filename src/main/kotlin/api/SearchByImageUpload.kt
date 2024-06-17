@@ -14,6 +14,7 @@ import utilility.Function.convertTo
 class SearchByImageUpload(
     private val imageBytes: ByteArray,
     private val cutBorders: Boolean = false,
+    private val anilistID: Int? = null,
 ) : Api {
     override fun executeBy(client: TraceMoeClient): TraceMoeResponse {
         val requestBody = imageBytes.toRequestBody("application/octet-stream".toMediaTypeOrNull())
@@ -21,6 +22,7 @@ class SearchByImageUpload(
         val url = Constant.BASE_SEARCH_URL.newBuilder()
             .apply {
                 if (cutBorders) addQueryParameter("cutBorders", null)
+                if (anilistID != null) addQueryParameter("anilistID", anilistID.toString())
             }
             .build()
 

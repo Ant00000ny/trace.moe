@@ -13,7 +13,7 @@ Add it to project dependency:
 <dependency>
     <groupId>fun.fantasea</groupId>
     <artifactId>trace.moe</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
 </dependency>
 ```
 

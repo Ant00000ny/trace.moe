@@ -15,7 +15,7 @@ class SearchByImageUpload(
     private val imageBytes: ByteArray,
     private val cutBorders: Boolean = false,
     private val anilistID: Int? = null,
-) : Api<TraceMoeResponse> {
+) : TraceMoeApi<TraceMoeResponse> {
     override fun executeBy(client: TraceMoeClient): TraceMoeResponse {
         val requestBody = imageBytes.toRequestBody("application/octet-stream".toMediaTypeOrNull())
 

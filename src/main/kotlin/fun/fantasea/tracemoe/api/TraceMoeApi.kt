@@ -2,6 +2,6 @@ package `fun`.fantasea.tracemoe.api
 
 import `fun`.fantasea.tracemoe.TraceMoeClient
 
-internal interface Api<R> {
+interface TraceMoeApi<R> {
     fun executeBy(client: TraceMoeClient): R
 }

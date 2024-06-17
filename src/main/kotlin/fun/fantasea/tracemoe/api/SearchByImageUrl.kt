@@ -14,7 +14,7 @@ class SearchByImageUrl(
     private val imageUrl: HttpUrl,
     private val cutBorders: Boolean = false,
     private val anilistID: Int? = null,
-) : Api<TraceMoeResponse> {
+) : TraceMoeApi<TraceMoeResponse> {
     override fun executeBy(client: TraceMoeClient): TraceMoeResponse {
         val url = Constant.BASE_SEARCH_URL.newBuilder()
             .apply {

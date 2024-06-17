@@ -1,7 +1,7 @@
 package `fun`.fantasea.tracemoe.model
 
 import `fun`.fantasea.tracemoe.TraceMoeClient
-import `fun`.fantasea.tracemoe.api.Api
+import `fun`.fantasea.tracemoe.api.TraceMoeApi
 import `fun`.fantasea.tracemoe.exception.ErrorException
 import `fun`.fantasea.tracemoe.utilility.Constant
 import `fun`.fantasea.tracemoe.utilility.Function.convertTo
@@ -24,7 +24,7 @@ data class Me(
     val concurrency: Int,
     val quota: Int,
     val quotaUsed: Int,
-) : Api<Me> {
+) : TraceMoeApi<Me> {
     override fun executeBy(client: TraceMoeClient): Me {
         if (client.accessToken.isNullOrBlank()) {
             throw ErrorException("accessToken is null or blank")

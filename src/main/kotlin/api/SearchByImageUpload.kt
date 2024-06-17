@@ -2,32 +2,34 @@ package api
 
 import TraceMoeClient
 import model.TraceMoeResponse
-import okhttp3.HttpUrl
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 import utilility.Constant
 import utilility.Function.convertTo
 
 /**
- * curl "https://api.trace.moe/search?url=https://images.plurk.com/32B15UXxymfSMwKGTObY5e.jpg"
+ * curl --data-binary "@demo.jpg" https://api.trace.moe/search
  */
-class SearchByImageUrl(
-    private val imageUrl: HttpUrl,
+class SearchByImageUpload(
+    private val imageBytes: ByteArray,
     private val cutBorders: Boolean = false,
 ) : Api {
     override fun executeBy(client: TraceMoeClient): TraceMoeResponse {
+        val requestBody = imageBytes.toRequestBody("application/octet-stream".toMediaTypeOrNull())
+
         val url = Constant.BASE_SEARCH_URL.newBuilder()
             .apply {
-                addQueryParameter("url", imageUrl.toString())
                 if (cutBorders) addQueryParameter("cutBorders", null)
             }
             .build()
 
         val request = Request.Builder()
             .url(url)
-            .get()
+            .post(requestBody)
             .build()
 
-        val traceMoeResponse = client.httpClient.newCall(request)
+        val traceMoeResponse = Constant.httpClient.newCall(request)
             .execute()
             .body
             .use { it.string() }

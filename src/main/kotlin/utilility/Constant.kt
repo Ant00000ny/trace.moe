@@ -6,7 +6,7 @@ import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 
 internal object Constant {
-    val BASE_URL = "https://api.trace.moe".toHttpUrl()
+    val BASE_SEARCH_URL = "https://api.trace.moe/search".toHttpUrl()
     val httpClient = OkHttpClient.Builder()
         .followRedirects(true)
         .build()
